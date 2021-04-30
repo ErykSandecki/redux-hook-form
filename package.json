@@ -30,8 +30,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "prettier": "npx prettier --write .",
-    "start": "react-scripts start"
+    "prettier": "npx prettier --write ."
   },
   "eslintConfig": {
     "extends": [
