@@ -1,5 +1,5 @@
 export { Field } from './Field/Field';
-export { memoizedForm as Form } from './Form/Form';
+export { memoizedForm } from './Form/Form';
 export type {
   TFieldInputProps,
   TFieldMetaProps,

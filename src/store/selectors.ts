@@ -1,6 +1,6 @@
 import composeFp from 'lodash/fp/compose';
-import isArrayFp from 'lodash/fp/isArray';
 import getFp from 'lodash/fp/get';
+import isArrayFp from 'lodash/fp/isArray';
 import pickFp from 'lodash/fp/pick';
 import { createSelector, Selector } from 'reselect';
 

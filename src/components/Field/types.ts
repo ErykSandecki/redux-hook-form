@@ -64,7 +64,7 @@ export type TFieldProps = {
 
 export type TValidatorProps = {
   getAsyncErrors: (value: boolean | number | string) => Promise<Array<string>>;
-  getSyncErrros: (value: boolean | number | string) => Array<string>;
+  getSyncErrors: (value: boolean | number | string) => Array<string>;
   updateAsyncValidators: DebouncedFunc<
     (value: boolean | number | string) => Promise<void>
   >;

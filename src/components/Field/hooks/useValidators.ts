@@ -50,7 +50,7 @@ const useValidators = (
     return await getErrorsFromAsyncValidators(asyncValidators, value, fields);
   };
 
-  const getSyncErrros = (value: boolean | number | string): Array<string> =>
+  const getSyncErrors = (value: boolean | number | string): Array<string> =>
     getErrorsFromSyncValidators(syncValidators, value, fields);
 
   // eslint-disable-next-line
@@ -58,7 +58,6 @@ const useValidators = (
     debounce(async (value: boolean | number | string) => {
       if (asyncValidators.length > 0) {
         const asyncErrors = await getAsyncErrors(value);
-
         dispatchField(
           { asyncErrors, isPending: false },
           ActionTypes.updateAsyncErrors
@@ -71,7 +70,7 @@ const useValidators = (
   const updateSyncValidators = (value: boolean | number | string): void => {
     if (syncValidators.length > 0) {
       dispatchField(
-        { syncErrors: getSyncErrros(value) },
+        { syncErrors: getSyncErrors(value) },
         ActionTypes.updateSyncErrors
       );
     }
@@ -79,7 +78,7 @@ const useValidators = (
 
   return {
     getAsyncErrors,
-    getSyncErrros,
+    getSyncErrors: getSyncErrors,
     updateAsyncValidators,
     updateSyncValidators,
   };

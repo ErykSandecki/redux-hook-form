@@ -48,12 +48,12 @@ const getChildrenByObject = (
   keys: Array<string>
 ): {} => {
   if (!isField(children)) {
-    const propsChildren = get(children, 'props.children');
+    const childrenFromProps = get(children, 'props.children');
 
-    if (propsChildren) {
+    if (childrenFromProps) {
       return cloneElement(children, {
         ...children.props,
-        children: getChildren(propsChildren, formName, keys),
+        children: getChildren(childrenFromProps, formName, keys),
         key: getRandomKey(keys),
       });
     }

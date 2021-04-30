@@ -1,5 +1,5 @@
 import forOwn from 'lodash/forOwn';
-import { FunctionComponent, memo, useEffect, useMemo } from 'react';
+import React, { FunctionComponent, memo, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // others

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import defer from 'lodash/defer';
-import { forwardRef, useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // hooks
@@ -43,8 +43,14 @@ export const Field = forwardRef<HTMLInputElement, TFieldProps>(
     const field = useSelector(getFieldSelectorCreator(formName, name));
     const { touched, value, visited } = field || {};
     const dispatch = useDispatch();
+    const inputProps = useInputProps(formName, name);
+    const metaProps = useMetaProps(formName, name);
+    const wrapperRestProps = {
+      ...restProps,
+      ...(ref ? { ref: ref } : {}),
+    };
     const {
-      getSyncErrros,
+      getSyncErrors,
       updateAsyncValidators,
       updateSyncValidators,
     } = useValidators(
@@ -54,12 +60,6 @@ export const Field = forwardRef<HTMLInputElement, TFieldProps>(
       subscriptionFields,
       syncValidators
     );
-    const inputProps = useInputProps(formName, name);
-    const metaProps = useMetaProps(formName, name);
-    const wrapperRestProps = {
-      ...restProps,
-      ...(ref ? { ref: ref } : {}),
-    };
 
     useEffect(() => {
       const value = initialValue !== undefined || allowNull ? initialValue : '';
@@ -78,7 +78,7 @@ export const Field = forwardRef<HTMLInputElement, TFieldProps>(
               initialValue: value,
               isPending: false,
               parse,
-              syncErrors: getSyncErrros(value),
+              syncErrors: getSyncErrors(value),
               touched: initialTouched,
               value,
               visited: initialVisited,

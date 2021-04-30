@@ -13,15 +13,7 @@ import {
 } from '../../../store/selectors';
 
 const useMetaProps = (formName: string, name: string): TFieldMetaProps => {
-  const isPendingForm = useSelector(
-    getFormAttributesSelectorCreator('isPending', formName)
-  );
   const field: TField = useSelector(getFieldSelectorCreator(formName, name));
-
-  if (!field) {
-    return {};
-  }
-
   const {
     active,
     asyncErrors,
@@ -35,20 +27,24 @@ const useMetaProps = (formName: string, name: string): TFieldMetaProps => {
     value,
     valueSinceLastSubmit,
     visited,
-  } = field;
-
-  const isDirtyLastSinceLastSubmit = ():
-    | { dirtyLastSinceLastSubmit: boolean }
-    | {} =>
+  } = field || {};
+  const isDirtyLastSinceLastSubmit =
     valueSinceLastSubmit !== undefined
       ? { dirtyLastSinceLastSubmit: value !== valueSinceLastSubmit }
       : {};
+  const isPendingForm = useSelector(
+    getFormAttributesSelectorCreator('isPending', formName)
+  );
+
+  if (isEmpty(field)) {
+    return {};
+  }
 
   return {
     active,
     ...(data ? { data: data } : {}),
-    dity: initialValue !== value,
-    ...isDirtyLastSinceLastSubmit(),
+    dirty: initialValue !== value,
+    ...isDirtyLastSinceLastSubmit,
     errors: [...asyncErrors, ...syncErrors],
     initialValue,
     invalid: !isEmpty([...asyncErrors, ...syncErrors]),
