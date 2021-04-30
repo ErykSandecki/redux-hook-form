@@ -1,0 +1,1 @@
+export { reduxHookForm } from './reducer';
