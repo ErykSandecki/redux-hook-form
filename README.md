@@ -83,7 +83,7 @@ const SomeForm = () => ({
 })
 ``` 
 
-#### FormProps
+##### FormProps
 
 ```typescript
 export type TFormProps = {
@@ -99,7 +99,7 @@ export type TFormProps = {
 <b>asyncTimeDelay</b> [optional]
 
 ```typescript
-const asyncTimeDelay: number;
+asyncTimeDelay: number;
 ```
 
 The time that defines when an asynchronous validation should be called, if any exists. The default delay time is: 0.
@@ -107,7 +107,7 @@ The time that defines when an asynchronous validation should be called, if any e
 <b>children</b>
 
 ```typescript
-const children: ReactNode;
+children: ReactNode;
 ```
 
 Renderings of given children. It is not allowed to nest another `Field` component for a `Field` component. No `formName` props will be added for this nested `Field` component.
@@ -115,7 +115,7 @@ Renderings of given children. It is not allowed to nest another `Field` componen
 <b>formName</b>
 
 ```typescript
-const formName: string;
+formName: string;
 ```
 
 The form name that will be added in redux as an object with this key name.
@@ -123,7 +123,7 @@ The form name that will be added in redux as an object with this key name.
 <b>isValid</b> [optional]
 
 ```typescript
-const isValid: boolean;
+isValid: boolean;
 ```
 
 A variable that determines if the form has passed validation. The default value is: `false`.
@@ -131,7 +131,7 @@ A variable that determines if the form has passed validation. The default value 
 <b>onSubmit</b>
 
 ```typescript
-const onSubmit: (formData: { [key: string]: boolean | number | string }) => void;
+onSubmit: (formData: { [key: string]: boolean | number | string }) => void;
 ```
 
 The function that is called when the form is submitted. `formData` Returns all values from the fields.
@@ -139,7 +139,212 @@ The function that is called when the form is submitted. `formData` Returns all v
 <b>validate</b> [optional]
 
 ```typescript
-const validate: (fields: { [key: string]: TField }) => boolean;
+validate: (fields: { [key: string]: TField }) => boolean;
 ```
 
 A function that returns true or false depending on the content of the condition. If the function is not passed as props, it returns true by default.
+
+#### Field 
+
+A component that manages the state of a given field. The component initializes its object in redux based on the passed props `formName` via the `Form` component. 
+
+If props `formName` is passed, it will be overwritten via the `Form` component. 
+
+##### FieldProps
+
+```typescript
+export type TFieldProps = {
+  afterSubmit?: () => void;
+  allowNull?: boolean;
+  asyncValidators?: Array<TAsyncValidator>;
+  beforeSubmit?: () => void;
+  children?: ReactNode;
+  Component?: FunctionComponent<any>;
+  data?: { [key: string]: any };
+  format?: (
+    value: boolean | number | string,
+    name: string
+  ) => boolean | number | string;
+  formatOnBlur?: boolean;
+  formName?: string;
+  name: string;
+  parse?: (
+    value: boolean | number | string,
+    name: string
+  ) => boolean | number | string;
+  ref?: RefObject<HTMLInputElement>;
+  render?: (
+    inputProps: TFieldInputProps,
+    metaProps: TFieldMetaProps,
+    restProps?: any
+  ) => ReactNode;
+  subscriptionFields?: Array<string>;
+  syncValidators?: Array<TSyncValidator>;
+  touched?: boolean;
+  value?: boolean | number | string;
+  visited?: boolean;
+};
+```
+
+<b>afterSubmit</b> [optional]
+
+```typescript
+afterSubmit?: () => void;
+```
+Function is call during the actions: `SUBMIT_SUCCESS` & `SUBMIT_ERROR`.
+
+<b>allowNull</b> [optional]
+
+```typescript
+allowNull?: () => void;
+```
+
+If props is true then value like null property will be pass in props `value`.
+
+<b>asyncValidators</b> [optional]
+
+```typescript
+asyncValidators?: Array<TAsyncValidator>;
+```
+
+Asynchronous validators that will be called when the state of a given field changes. The call time after a given action is defined by props `asyncTimeDelay` by `Form`.
+
+<b>beforeSubmit</b> [optional]
+
+```typescript
+beforeSubmit?: () => void;
+```
+
+Function is call during the action `SUBMIT`.
+
+<b>children</b> [optional]
+
+```typescript
+children: ReactNode;
+```
+
+Renderings of given children. As props is called in `Field` first if it exists.
+
+<b>Component</b> [optional]
+
+```typescript
+Component?: FunctionComponent<any>;
+```
+
+Renderings of given Component. As props is called in `Field` second if it exists.
+
+<b>data</b> [optional]
+
+```typescript
+data?: { [key: string]: any };
+```
+
+Additional object which can be pass and it will be available in redux.
+
+<b>format</b> [optional]
+
+```typescript
+format?: (
+    value: boolean | number | string,
+    name: string
+  ) => boolean | number | string;
+```
+
+A function that takes the value from the form values and the name of the field and formats the value to give to the input. Common use cases include converting javascript `Date` values into a localized date `string`.
+
+<b>formatOnBlur</b> [optional]
+
+```typescript
+formatOnBlur?: boolean;
+```
+
+If true, the format function will only be called when the field is blurred. If `false`, format will be called on every render.
+
+<b>formName</b> [optional]
+
+```typescript
+formName?: string;
+```
+
+This props is pass automatically by `Form`. It is identifier of Form.
+
+<b>name</b>
+
+```typescript
+name: string;
+```
+
+The name of the field that will be the key of the object containing data about the current state.
+
+<b>parse</b> [optional]
+
+```typescript
+parse?: (
+    value: boolean | number | string,
+    name: string
+  ) => boolean | number | string;
+```
+
+Function which parse value before submit. Parse value will be available in `formData` in function onSubmit.
+
+<b>ref</b> [optional]
+
+```typescript
+ref?: RefObject<HTMLInputElement>;
+```
+
+Support passing props `ref`. Ref from React.
+
+<b>render</b> [optional]
+
+```typescript
+render?: (
+    inputProps: TFieldInputProps,
+    metaProps: TFieldMetaProps,
+    restProps?: any
+  ) => ReactNode;
+```
+
+Render Function. As props is called in `Field` thirty if it exists.
+
+<b>subscriptionFields</b> [optional]
+
+```typescript
+subscriptionFields?: Array<string>;
+```
+
+List of subscribed fields. When changes are made to a field, the component will be re-rendered. The current state of the subscribed fields will be available as the last argument when validating the field asynchronously and synchronously.
+
+By default, the list is empty, which means that the field will not listen for state changes in other fields.
+
+<b>syncValidators</b> [optional]
+
+```typescript
+syncValidators?: Array<TSyncValidator>;
+```
+
+Synchronous validators that will be called when the state of a given field changes.
+
+<b>touched</b> [optional]
+
+```typescript
+touched?: boolean;
+```
+
+A value that will only be set after initialization. The value will be set to true after event `onBlur`.
+
+<b>value</b> [optional]
+
+```typescript
+value?: boolean | number | string;
+```
+
+A value that will only be set after initialization.
+
+<b></b>
+
+```typescript
+visited?: boolean;
+```
+
+A value that will only be set after initialization. The value will be set to true after event `onFocus`.
