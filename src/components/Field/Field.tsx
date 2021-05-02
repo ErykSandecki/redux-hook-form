@@ -62,7 +62,7 @@ export const Field = forwardRef<HTMLInputElement, TFieldProps>(
     );
 
     useEffect(() => {
-      const value = initialValue !== undefined || allowNull ? initialValue : '';
+      const value = initialValue !== null || allowNull ? initialValue : '';
 
       defer(() => {
         dispatch(
@@ -107,14 +107,14 @@ export const Field = forwardRef<HTMLInputElement, TFieldProps>(
       return <>{children(inputProps, metaProps, wrapperRestProps)}</>;
     }
 
-    if (render) {
-      return render(inputProps, metaProps, wrapperRestProps);
-    }
-
     if (Component) {
       return (
         <Component input={inputProps} meta={metaProps} {...wrapperRestProps} />
       );
+    }
+
+    if (render) {
+      return render(inputProps, metaProps, wrapperRestProps);
     }
 
     return null;
