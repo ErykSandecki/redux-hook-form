@@ -341,7 +341,7 @@ value?: boolean | number | string;
 
 A value that will only be set after initialization.
 
-<b></b>
+<b>visited</b> [optional]
 
 ```typescript
 visited?: boolean;
@@ -400,3 +400,146 @@ value: boolean | number | string;
 ```
 
 The current value of the `Field`.
+
+##### FieldMetaProps [optional]
+
+```typescript
+export type TFieldMetaProps = {
+  active: boolean;
+  data: { [key: string]: any } | undefined;
+  dirty: boolean;
+  dirtyLastSinceLastSubmit: boolean | undefined;
+  errors: Array<string>;
+  initialValue: boolean | number | string;
+  invalid: boolean;
+  modified: boolean | undefined;
+  modifiedSinceLastSubmit: boolean | undefined;
+  pristine: boolean;
+  submitting: boolean;
+  touched: boolean;
+  valid: boolean;
+  validating: boolean;
+  visited: boolean;
+};
+```
+
+<b>active</b>
+
+```typescript
+active: boolean;
+```
+
+When field is focused the value is true.
+
+<b>data</b>
+
+```typescript
+data?: { [key: string]: any };
+```
+
+Additional object which can be pass and it will be available in redux.
+
+<b>dirty</b>
+
+```typescript
+dirty: boolean;
+```
+
+When the current value is different than current.
+
+<b>dirtyLastSinceLastSubmit</b>
+
+```typescript
+dirtyLastSinceLastSubmit: boolean | undefined;
+```
+
+When the current value is different than value after submit.
+
+<b>errors</b>
+
+```typescript
+errors: Array<string>;
+```
+
+List of errors from async & sync validators.
+
+<b>initialValue</b>
+
+```typescript
+initialValue: boolean | number | string;
+```
+
+Value, which was as started.
+
+<b>invalid</b>
+
+```typescript
+invalid: boolean;
+```
+
+True If `field` contains errors.
+
+<b>modified</b>
+
+```typescript
+modified: boolean | undefined;
+```
+
+If `field` was ever changed.
+
+<b>modifiedSinceLastSubmit</b>
+
+```typescript
+modifiedSinceLastSubmit: boolean | undefined;
+```
+
+If `field` was changed after last submit.
+
+<b>pristine</b>
+
+```typescript
+pristine: boolean;
+```
+
+If field value is different than initial.
+
+<b>submitting</b>
+
+```typescript
+submitting: boolean;
+```
+
+When the form is pending.
+
+<b>touched</b>
+
+```typescript
+touched: boolean;
+```
+
+A value that will only be set after initialization. The value will be set to true after event `onBlur`.
+
+<b>valid</b>
+
+```typescript
+valid: boolean;
+```
+
+True if field doesn't contain errors.
+
+<b>validating</b>
+
+```typescript
+validating: boolean;
+```
+
+True if field is pending.
+
+<b>visited</b> [optional]
+
+```typescript
+visited?: boolean;
+```
+
+A value that will only be set after initialization. The value will be set to true after event `onFocus`.
+
