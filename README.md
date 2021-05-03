@@ -348,3 +348,55 @@ visited?: boolean;
 ```
 
 A value that will only be set after initialization. The value will be set to true after event `onFocus`.
+
+##### FieldInputProps [render]
+
+```typescript
+export type TFieldInputProps = {
+  name: string;
+  onBlur: (event: Event) => void;
+  onChange: (event: Event) => void;
+  onFocus: (event: Event) => void;
+  value: boolean | number | string;
+};
+```
+
+<b>name</b>
+
+```typescript
+name: string;
+```
+
+The name of the field that will be the key of the object containing data about the current state.
+
+<b>onBlur</b>
+
+```typescript
+onBlur: (event: Event) => void;
+```
+
+Standard HTML event, when user click outside element.
+
+<b>onChange</b>
+
+```typescript
+onChange: (event: Event) => void;
+```
+
+Standard HTML event, when user change value.
+
+<b>onChange</b>
+
+```typescript
+onFocus: (event: Event) => void;
+```
+
+Standard HTML event, when user click on element.
+
+<b>value</b>
+
+```typescript
+value: boolean | number | string;
+```
+
+The current value of the `Field`.
