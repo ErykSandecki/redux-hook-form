@@ -62,7 +62,8 @@ export type TMainState = {
 - [Overview](#Overview)
 - [Form](#Form)
 - [Field](#Field)
-- [UseField](#UseField)
+- [useForm](#UseForm)
+- [useField](#UseField)
 ### Overview
 
 To start using the library, you must have a version of React 16.8 or higher due to the hooks used. React Redux is also required to manage the state of a given form.
@@ -543,16 +544,6 @@ visited?: boolean;
 
 A value that will only be set after initialization. The value will be set to true after event `onFocus`.
 
-### UseField
-
-```typescript
-useField = (formName: string, name: string): TFieldRenderProps;
-
-type TFieldRenderProps = TFieldInputProps & TFieldMetaProps;
-```
-
-Hook which allows access to the data of a given `field` from any place in the component.
-
 ### UseForm
 
 ```typescript
@@ -599,3 +590,13 @@ isValid: boolean;
 ```
 
 If the form is valid correctly.
+
+### UseField
+
+```typescript
+useField = (formName: string, name: string): TFieldRenderProps;
+
+type TFieldRenderProps = TFieldInputProps & TFieldMetaProps;
+```
+
+Hook which allows access to the data of a given `field` from any place in the component.
