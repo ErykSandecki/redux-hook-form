@@ -64,6 +64,7 @@ export type TMainState = {
 - [Field](#Field)
 - [useForm](#UseForm)
 - [useField](#UseField)
+<br /><br />
 ### Overview
 
 To start using the library, you must have a version of React 16.8 or higher due to the hooks used. React Redux is also required to manage the state of a given form.
@@ -96,6 +97,7 @@ export type TFormProps = {
   validate?: (fields: { [key: string]: TField }) => boolean;
 };
 ```
+<br /><br />
 
 <b>asyncTimeDelay:</b> [optional]
 
@@ -105,6 +107,8 @@ asyncTimeDelay: number;
 
 The time that defines when an asynchronous validation should be called, if any exists. The default delay time is: 0.
 
+<br /><br />
+
 <b>children:</b>
 
 ```typescript
@@ -112,6 +116,8 @@ children: ReactNode;
 ```
 
 Renderings of given children. It is not allowed to nest another `Field` component for a `Field` component. No `formName` props will be added for this nested `Field` component.
+
+<br /><br />
 
 <b>formName:</b>
 
@@ -121,6 +127,8 @@ formName: string;
 
 The form name that will be added in redux as an object with this key name.
 
+<br /><br />
+
 <b>isValid:</b> [optional]
 
 ```typescript
@@ -128,6 +136,8 @@ isValid: boolean;
 ```
 
 A variable that determines if the form has passed validation. The default value is: `false`.
+
+<br /><br />
 
 <b>onSubmit:</b>
 
@@ -137,6 +147,8 @@ onSubmit: (formData: { [key: string]: boolean | number | string }) => void;
 
 The function that is called when the form is submitted. `formData` Returns all values from the fields.
 
+<br /><br />
+
 <b>validate:</b> [optional]
 
 ```typescript
@@ -145,11 +157,15 @@ validate: (fields: { [key: string]: TField }) => boolean;
 
 A function that returns true or false depending on the content of the condition. If the function is not passed as props, it returns true by default.
 
+<br /><br />
+
 ### Field 
 
 A component that manages the state of a given field. The component initializes its object in redux based on the passed props `formName` via the `Form` component. 
 
 If props `formName` is passed, it will be overwritten via the `Form` component. 
+
+<br /><br />
 
 ##### FieldProps
 
@@ -187,12 +203,16 @@ export type TFieldProps = {
 };
 ```
 
+<br /><br />
+
 <b>afterSubmit:</b> [optional]
 
 ```typescript
 afterSubmit?: () => void;
 ```
 Function is call during the actions: `SUBMIT_SUCCESS` & `SUBMIT_ERROR`.
+
+<br /><br />
 
 <b>allowNull:</b> [optional]
 
@@ -202,6 +222,8 @@ allowNull?: () => void;
 
 If props is true then value like null property will be pass in props `value`.
 
+<br /><br />
+
 <b>asyncValidators:</b> [optional]
 
 ```typescript
@@ -209,6 +231,8 @@ asyncValidators?: Array<TAsyncValidator>;
 ```
 
 Asynchronous validators that will be called when the state of a given field changes. The call time after a given action is defined by props `asyncTimeDelay` by `Form`.
+
+<br /><br />
 
 <b>beforeSubmit:</b> [optional]
 
@@ -218,6 +242,8 @@ beforeSubmit?: () => void;
 
 Function is call during the action `SUBMIT`.
 
+<br /><br />
+
 <b>children:</b> [optional]
 
 ```typescript
@@ -225,6 +251,8 @@ children: ReactNode;
 ```
 
 Renderings of given children. As props is called in `Field` first if it exists.
+
+<br /><br />
 
 <b>Component:</b> [optional]
 
@@ -234,6 +262,8 @@ Component?: FunctionComponent<any>;
 
 Renderings of given Component. As props is called in `Field` second if it exists.
 
+<br /><br />
+
 <b>data:</b> [optional]
 
 ```typescript
@@ -241,6 +271,8 @@ data?: { [key: string]: any };
 ```
 
 Additional object which can be pass and it will be available in redux.
+
+<br /><br />
 
 <b>format:</b> [optional]
 
@@ -253,6 +285,8 @@ format?: (
 
 A function that takes the value from the form values and the name of the field and formats the value to give to the input. Common use cases include converting javascript `Date` values into a localized date `string`.
 
+<br /><br />
+
 <b>formatOnBlur:</b> [optional]
 
 ```typescript
@@ -260,6 +294,8 @@ formatOnBlur?: boolean;
 ```
 
 If true, the format function will only be called when the field is blurred. If `false`, format will be called on every render.
+
+<br /><br />
 
 <b>formName:</b> [optional]
 
@@ -269,6 +305,8 @@ formName?: string;
 
 This props is pass automatically by `Form`. It is identifier of Form.
 
+<br /><br />
+
 <b>name:</b>
 
 ```typescript
@@ -276,6 +314,8 @@ name: string;
 ```
 
 The name of the field that will be the key of the object containing data about the current state.
+
+<br /><br />
 
 <b>parse:</b> [optional]
 
@@ -288,6 +328,8 @@ parse?: (
 
 Function which parse value before submit. Parse value will be available in `formData` in function onSubmit.
 
+<br /><br />
+
 <b>ref:</b> [optional]
 
 ```typescript
@@ -295,6 +337,8 @@ ref?: RefObject<HTMLInputElement>;
 ```
 
 Support passing props `ref`. Ref from React.
+
+<br /><br />
 
 <b>render:</b> [optional]
 
@@ -308,6 +352,8 @@ render?: (
 
 Render Function. As props is called in `Field` thirty if it exists.
 
+<br /><br />
+
 <b>subscriptionFields:</b> [optional]
 
 ```typescript
@@ -318,6 +364,8 @@ List of subscribed fields. When changes are made to a field, the component will 
 
 By default, the list is empty, which means that the field will not listen for state changes in other fields.
 
+<br /><br />
+
 <b>syncValidators:</b> [optional]
 
 ```typescript
@@ -325,6 +373,8 @@ syncValidators?: Array<TSyncValidator>;
 ```
 
 Synchronous validators that will be called when the state of a given field changes.
+
+<br /><br />
 
 <b>touched:</b> [optional]
 
@@ -334,6 +384,8 @@ touched?: boolean;
 
 A value that will only be set after initialization. The value will be set to true after event `onBlur`.
 
+<br /><br />
+
 <b>value:</b> [optional]
 
 ```typescript
@@ -342,6 +394,8 @@ value?: boolean | number | string;
 
 A value that will only be set after initialization.
 
+<br /><br />
+
 <b>visited:</b> [optional]
 
 ```typescript
@@ -349,6 +403,8 @@ visited?: boolean;
 ```
 
 A value that will only be set after initialization. The value will be set to true after event `onFocus`.
+
+<br /><br />
 
 ##### FieldInputProps [render]
 
@@ -362,6 +418,8 @@ export type TFieldInputProps = {
 };
 ```
 
+<br /><br />
+
 <b>name:</b>
 
 ```typescript
@@ -369,6 +427,8 @@ name: string;
 ```
 
 The name of the field that will be the key of the object containing data about the current state.
+
+<br /><br />
 
 <b>onBlur:</b>
 
@@ -378,6 +438,8 @@ onBlur: (event: Event) => void;
 
 Standard HTML event, when user click outside element.
 
+<br /><br />
+
 <b>onChange:</b>
 
 ```typescript
@@ -385,6 +447,8 @@ onChange: (event: Event) => void;
 ```
 
 Standard HTML event, when user change value.
+
+<br /><br />
 
 <b>onFocus:</b>
 
@@ -394,6 +458,8 @@ onFocus: (event: Event) => void;
 
 Standard HTML event, when user click on element.
 
+<br /><br />
+
 <b>value:</b>
 
 ```typescript
@@ -401,6 +467,8 @@ value: boolean | number | string;
 ```
 
 The current value of the `Field`.
+
+<br /><br />
 
 ##### FieldMetaProps [optional]
 
@@ -424,6 +492,8 @@ export type TFieldMetaProps = {
 };
 ```
 
+<br /><br />
+
 <b>active:</b>
 
 ```typescript
@@ -431,6 +501,8 @@ active: boolean;
 ```
 
 When field is focused the value is true.
+
+<br /><br />
 
 <b>data:</b>
 
@@ -440,6 +512,8 @@ data?: { [key: string]: any };
 
 Additional object which can be pass and it will be available in redux.
 
+<br /><br />
+
 <b>dirty:</b>
 
 ```typescript
@@ -447,6 +521,8 @@ dirty: boolean;
 ```
 
 When the current value is different than current.
+
+<br /><br />
 
 <b>dirtyLastSinceLastSubmit:</b>
 
@@ -456,6 +532,8 @@ dirtyLastSinceLastSubmit: boolean | undefined;
 
 When the current value is different than value after submit.
 
+<br /><br />
+
 <b>errors:</b>
 
 ```typescript
@@ -463,6 +541,8 @@ errors: Array<string>;
 ```
 
 List of errors from async & sync validators.
+
+<br /><br />
 
 <b>initialValue:</b>
 
@@ -472,6 +552,8 @@ initialValue: boolean | number | string;
 
 Value, which was as started.
 
+<br /><br />
+
 <b>invalid:</b>
 
 ```typescript
@@ -479,6 +561,8 @@ invalid: boolean;
 ```
 
 True If `field` contains errors.
+
+<br /><br />
 
 <b>modified:</b>
 
@@ -488,6 +572,8 @@ modified: boolean | undefined;
 
 If `field` was ever changed.
 
+<br /><br />
+
 <b>modifiedSinceLastSubmit:</b>
 
 ```typescript
@@ -495,6 +581,8 @@ modifiedSinceLastSubmit: boolean | undefined;
 ```
 
 If `field` was changed after last submit.
+
+<br /><br />
 
 <b>pristine:</b>
 
@@ -504,6 +592,8 @@ pristine: boolean;
 
 If field value is different than initial.
 
+<br /><br />
+
 <b>submitting:</b>
 
 ```typescript
@@ -511,6 +601,8 @@ submitting: boolean;
 ```
 
 When the form is pending.
+
+<br /><br />
 
 <b>touched:</b>
 
@@ -520,6 +612,8 @@ touched: boolean;
 
 A value that will only be set after initialization. The value will be set to true after event `onBlur`.
 
+<br /><br />
+
 <b>valid:</b>
 
 ```typescript
@@ -527,6 +621,8 @@ valid: boolean;
 ```
 
 True if field doesn't contain errors.
+
+<br /><br />
 
 <b>validating:</b>
 
@@ -536,6 +632,8 @@ validating: boolean;
 
 True if field is pending.
 
+<br /><br />
+
 <b>visited:</b> [optional]
 
 ```typescript
@@ -543,6 +641,8 @@ visited?: boolean;
 ```
 
 A value that will only be set after initialization. The value will be set to true after event `onFocus`.
+
+<br /><br />
 
 ### UseForm
 
@@ -559,6 +659,8 @@ export type TForm = {
 
 Hook which allows access to the data of a given `form` any place in the component.
 
+<br /><br />
+
 <b>asyncTimeDelay:</b> [optional]
 
 ```typescript
@@ -566,6 +668,8 @@ asyncTimeDelay: number;
 ```
 
 The time that defines when an asynchronous validation should be called, if any exists. The default delay time is: 0.
+
+<br /><br />
 
 <b>error:</b>
 
@@ -575,6 +679,8 @@ error: string;
 
 If form contains error after submit.
 
+<br /><br />
+
 <b>isPending:</b>
 
 ```typescript
@@ -583,6 +689,8 @@ isPending: boolean;
 
 If the form is in the process of submitting data.
 
+<br /><br />
+
 <b>isValid:</b>
 
 ```typescript
@@ -590,6 +698,8 @@ isValid: boolean;
 ```
 
 If the form is valid correctly.
+
+<br /><br />
 
 ### UseField
 
